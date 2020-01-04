@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthGuard } from './core/auth/auth.guard';
+import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,10 @@ import { AuthGuard } from './core/auth/auth.guard';
     BrowserModule,
     CommonModule,
     HttpClientModule,
+    SharedModule,
     AppRoutingModule,
     CoreModule,
-    LayoutModule
+    LayoutModule,
   ],
   providers: [
     AuthGuard,
