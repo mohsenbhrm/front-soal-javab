@@ -1,0 +1,44 @@
+<section class="container">
+  <div class="card">
+    <div class="card-body">
+      <h4>پرسش سوال</h4>
+      <form [formGroup]="registerQuestion">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <!-- <label for="exampleFormControlSelect1">رشته</label> -->
+              <select formControlName="field" class="form-control">
+                <option [ngValue]="null" disabled>رشته</option>
+                <option *ngFor="let item of fields" [ngValue]="item.id">{{item.onvan}}</option>
+
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <!-- <label for="exampleFormControlSelect1">زیر رشته</label> -->
+              <select formControlName="subField" class="form-control">
+                <option [ngValue]="null" disabled>زیر رشته</option>
+                <option *ngFor="let item of activeSubFields" [ngValue]="item.id">{{item.onvan}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+              <textarea formControlName="questionBody" class="form-control"  placeholder="متن سوال" rows="6"></textarea>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+              <textarea formControlName="tags" class="form-control"  placeholder="تگ" rows="6"></textarea>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary">ثبت سوال</button>
+      </form>
+    </div>
+  </div>
+</section>

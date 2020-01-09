@@ -1,4 +1,4 @@
-const server = 'localhost:32745';
+const server = 'https://localhost:5001';
 
 export const environment = {
   production: true,

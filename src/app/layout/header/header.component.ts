@@ -12,4 +12,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  toggleSidebar() {}
+
+  rltAndLtr() {}
+
+  changeLang(lang: string) {}
+
+  onLoggedout() {}
+
 }
