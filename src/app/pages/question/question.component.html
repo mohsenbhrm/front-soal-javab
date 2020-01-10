@@ -10,8 +10,12 @@
               <select formControlName="field" class="form-control">
                 <option [ngValue]="null" disabled>رشته</option>
                 <option *ngFor="let item of fields" [ngValue]="item.id">{{item.onvan}}</option>
-
               </select>
+              <span *ngIf="registerQuestion.get('field').hasError('required') &&
+               registerQuestion.get('field').value === null &&
+               registerQuestion.get('field').touched" class="text-danger">
+                <small>رشته الزامی است</small>
+              </span>
             </div>
           </div>
           <div class="col-sm-6">
@@ -21,23 +25,46 @@
                 <option [ngValue]="null" disabled>زیر رشته</option>
                 <option *ngFor="let item of activeSubFields" [ngValue]="item.id">{{item.onvan}}</option>
               </select>
+              <span *ngIf="registerQuestion.get('subField').hasError('required') &&
+              registerQuestion.get('subField').value === null &&
+              registerQuestion.get('subField').touched" class="text-danger">
+                <small>زیر رشته الزامی است</small>
+              </span>
             </div>
           </div>
           <div class="col-12">
             <div class="form-group">
               <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
-              <textarea formControlName="questionBody" class="form-control"  placeholder="متن سوال" rows="6"></textarea>
+              <textarea formControlName="questionBody" class="form-control" placeholder="متن سوال" rows="6"></textarea>
+              <span *ngIf="registerQuestion.get('questionBody').hasError('required') &&
+              registerQuestion.get('questionBody').value === null &&
+              registerQuestion.get('questionBody').touched" class="text-danger">
+                <small>متن سوال الزامی است</small>
+              </span>
             </div>
           </div>
 
           <div class="col-12">
             <div class="form-group">
               <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
-              <textarea formControlName="tags" class="form-control"  placeholder="تگ" rows="6"></textarea>
+              <tag-input  formControlName="tags" (onAdd)="checkIfAvalable($event)" theme='bootstrap' [onlyFromAutocomplete]="false"
+              [placeholder]="'تگ بعدی'" [secondaryPlaceholder]="'تگ را وارد کنید'"
+              [separatorKeyCodes]="[32]" [allowDupes]="false">
+                <tag-input-dropdown [keepOpen]="false" [autocompleteObservable]='requestAutocompleteItems' [showDropdownIfEmpty]="true">
+                  <ng-template let-item="item" let-index="index">
+                    {{ item.display }}
+                  </ng-template>
+                </tag-input-dropdown>
+              </tag-input>
             </div>
           </div>
         </div>
-        <button class="btn btn-primary">ثبت سوال</button>
+        <button class="btn btn-primary" type="submit" (click)="registerQuestionForm()">
+          <div *ngIf="disabled" class="spinner-border text-light" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <span *ngIf="!disabled">ثبت سوال</span>
+        </button>
       </form>
     </div>
   </div>

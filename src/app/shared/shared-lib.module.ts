@@ -4,7 +4,9 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { TagInputModule } from 'ngx-chips';
+
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
     BrowserAnimationsModule,
     ToastrModule.forRoot({positionClass: 'toast-bottom-left'}),
     NgbDropdownModule,
+    TagInputModule,
     TranslateModule
   ],
   exports: [
@@ -21,6 +24,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
     BrowserAnimationsModule,
     ToastrModule,
     NgbDropdownModule,
+    TagInputModule,
     TranslateModule
   ]
 })
