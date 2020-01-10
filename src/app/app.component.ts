@@ -10,8 +10,8 @@ export class AppComponent {
   constructor(private translate: TranslateService) {
     this.translate.addLangs(['en', 'fa']);
     this.translate.setDefaultLang('fa');
-    const browserLang = this.translate.getBrowserLang();
-    this.translate.use(browserLang.match(/en|fa/) ? browserLang : 'fa');
+    // const browserLang = this.translate.getBrowserLang();
+    // this.translate.use(browserLang.match(/en|fa/) ? browserLang : 'fa');
   }
   title = 'front-soal-javab';
 }

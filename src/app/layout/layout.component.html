@@ -1,4 +1,7 @@
-<app-header></app-header>
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<app-header (collapsedEvent)="receiveCollapsed($event)" [collapsedF]="collapedSideBar"></app-header>
+<app-navbar (collapsedEvent)="receiveCollapsed($event)" [collapsedF]="collapedSideBar"></app-navbar>
+<section class="main-container" [class.collapsed]="collapedSideBar" >
+  <router-outlet></router-outlet>
+</section>
+
 <!-- <app-footer></app-footer> -->

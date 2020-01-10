@@ -13,12 +13,12 @@ import { SharedModule } from '@app/shared/shared.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LoginModule } from './login/login.module';
+import { PagesModule } from './pages/pages.module';
 
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
-
 
 @NgModule({
   declarations: [
@@ -28,20 +28,19 @@ export function createTranslateLoader(http: HttpClient) {
     BrowserModule,
     CommonModule,
     HttpClientModule,
-    SharedModule,
-    AppRoutingModule,
-    CoreModule,
-    LayoutModule,
-    LoginModule,
-
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
+        useFactory: (createTranslateLoader),
+        deps: [HttpClient],
       }
-    })
-
+    }),
+    SharedModule,
+    AppRoutingModule,
+    CoreModule,
+    LoginModule,
+    LayoutModule,
+    PagesModule,
   ],
   providers: [
     AuthGuard,
