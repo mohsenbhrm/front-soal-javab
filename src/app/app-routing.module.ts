@@ -4,6 +4,9 @@ import { LayoutComponent } from './layout/layout.component';
 import { AuthGuard } from './core/auth/auth.guard';
 import { LoginComponent } from './login/login.component';
 import { QuestionComponent } from './pages/question/question.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MyQuestionListComponent } from './pages/my-question-list/my-question-list.component';
+import { MyAnswerListComponent } from './pages/my-answer-list/my-answer-list.component';
 
 
 const routes: Routes = [
@@ -21,20 +24,29 @@ const routes: Routes = [
     path: 'home',
     // component: LayoutComponent,
     canActivate: [AuthGuard],
-    pathMatch: 'full',
     // loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
     component: LayoutComponent,
     children: [
-
       {
         path: '',
-        component: QuestionComponent,
+        redirectTo: 'dashboard',
         pathMatch: 'full'
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
       },
       {
         path: 'question',
         component: QuestionComponent,
-        pathMatch: 'full'
+      },
+      {
+        path: 'my-questions',
+        component: MyQuestionListComponent,
+      },
+      {
+        path: 'my-answers',
+        component: MyAnswerListComponent,
       }
     ]
   },

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '@app/core/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private http: HttpClient,
+    private authService: AuthService,
     private router: Router,
     private toastr: ToastrService
   ) { }
@@ -42,10 +43,9 @@ export class LoginComponent implements OnInit {
       // localStorage.setItem('authAccount', JSON.stringify('token'));
       // this.router.navigate(['/home']);
 
-      this.http.post(`${environment.apiConfig.baseUrl}/api/Auth/login`, body, { headers: header }).subscribe(token => {
+      this.authService.login(body.username, body.password).subscribe(token => {
         this.loginButtonDisabled = false;
         if (token) {
-          localStorage.setItem('authAccount', JSON.stringify(token));
           this.toastr.success('Login Successfull', 'Success');
           this.router.navigate(['/home']);
         } else {

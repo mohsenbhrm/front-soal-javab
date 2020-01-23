@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output, Input, OnChanges } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { AuthService } from '@app/core/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,11 @@ export class HeaderComponent implements OnInit, OnChanges {
   @Input() collapsedF: boolean;
   @Output() collapsedEvent = new EventEmitter<boolean>();
 
-  constructor(private translate: TranslateService, public router: Router) {
+  constructor(
+    private translate: TranslateService,
+    public router: Router,
+    private authService: AuthService
+  ) {
 
   }
 
@@ -27,14 +32,14 @@ export class HeaderComponent implements OnInit, OnChanges {
   }
 
   toggleSidebar() {
-      this.collapsed = !this.collapsed;
-      this.collapsedEvent.emit(this.collapsed);
+    this.collapsed = !this.collapsed;
+    this.collapsedEvent.emit(this.collapsed);
 
   }
 
 
   onLoggedout() {
-    localStorage.removeItem('isLoggedin');
+    this.authService.logout();
   }
 
   changeLang(language: string) {

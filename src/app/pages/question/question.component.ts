@@ -49,7 +49,7 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.questionService.getEssentialForQuestion().subscribe(fields => {
       this.fields = fields;
-      console.log(fields);
+      // console.log(fields);
 
     });
     this.initForm();
@@ -72,18 +72,7 @@ export class QuestionComponent implements OnInit {
       })));
     } else {
       const url = `${environment.apiConfig.baseUrl}/api/Tags/${this.registerQuestion.controls.subField.value}/${text}`;
-      return this.http
-        .get(url)
-        .pipe(map((data: any) => {
-          return data.map(d => {
-            const tagData: TagModel = {
-              value: d.id,
-              display: d.name
-            };
-            return tagData;
-          });
-        }
-        ));
+      return this.questionService.tryTagSearch(url);
     }
 
   }
@@ -92,24 +81,13 @@ export class QuestionComponent implements OnInit {
     if (typeof ($event.value) === 'string') {
 
       const url = `${environment.apiConfig.baseUrl}/api/Tags/${this.registerQuestion.controls.subField.value}/${$event.display}/`;
-      return this.http
-        .get(url)
-        .pipe(map((data: any) => {
-          return data.map(d => {
-            const tagData: TagModel = {
-              value: d.id,
-              display: d.name
-            };
-            return tagData;
-          });
+      return this.questionService.tryTagSearch(url).subscribe((res: TagModel[]) => {
+        const result = res.find(el => el.display === $event.display);
+        if (result) {
+          const tagRes = this.registerQuestion.controls.tags.value.find(el => el.display === $event.display);
+          tagRes.value = result.value;
         }
-        )).subscribe(res => {
-          const result = res.find(el => el.display === $event.display);
-          if (result) {
-            const tagRes = this.registerQuestion.controls.tags.value.find(el => el.display === $event.display);
-            tagRes.value = result.value;
-          }
-        });
+      });
     }
   }
 
@@ -145,14 +123,13 @@ export class QuestionComponent implements OnInit {
       tags: tagsArr
     };
 
-    this.http.post(`${environment.apiConfig.baseUrl}/api/Soal`, body).subscribe(res => {
+    this.questionService.registerQuestion(body).subscribe(res => {
       this.toastrService.success(JSON.stringify(res), 'res');
       this.registerQuestion.reset();
       this.disabled = false;
     },
       err => {
         this.toastrService.error(JSON.stringify(err), 'err');
-        console.log(err);
 
         this.disabled = false;
       });

@@ -1,8 +1,8 @@
 {
   "Dashboard": "Dashboard",
-  "Charts": "Charts",
-  "Tables": "Tables",
-  "Forms": "Forms",
+  "question": "Ask a question",
+  "my-questions": "My questions",
+  "my-answers": "My answers",
   "Bootstrap Element": "Bootstrap Element",
   "Bootstrap Grid": "Bootstrap Grid",
   "Component": "Component",

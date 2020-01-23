@@ -56,6 +56,11 @@
                   </ng-template>
                 </tag-input-dropdown>
               </tag-input>
+              <span *ngIf="registerQuestion.get('tags').hasError('required') &&
+              registerQuestion.get('tags').value === null &&
+              registerQuestion.get('tags').touched" class="text-danger">
+                <small>تگ الزامی است</small>
+              </span>
             </div>
           </div>
         </div>

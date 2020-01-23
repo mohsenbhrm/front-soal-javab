@@ -1,8 +1,8 @@
 {
   "Dashboard": "داشبورد",
-  "Charts": "چارت ها",
-  "Tables": "جداول",
-  "Forms": "فرم ها",
+  "question": "ثبت سوال",
+  "my-questions": "سوالاتی که پرسیده ام",
+  "my-answers": "جواب هایی که داده ام",
   "Bootstrap Element": "عناصر بوتسترپ",
   "Bootstrap Grid": "جداول بوتسترپ",
   "Component": "کامپوننت",

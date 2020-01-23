@@ -20,23 +20,23 @@ export class AuthService {
 
   }
 
-  login(username: string, password: string, captcha: string, rememberMe?: boolean): Observable<Login> {
+  login(username: string, password: string, captcha?: string, rememberMe?: boolean): Observable<Login> {
     const credential = {
       username,
       password,
       // captcha
     };
-    return this.httpClient.post(`${this.apiConfig.baseUrl}/api/login`, credential)
+    return this.httpClient.post(`${this.apiConfig.baseUrl}/api/Account/login`, credential)
       .pipe(map((login: any) => {
-        if (login.token) {
-          this.storeToken(login, rememberMe);
+        if (login.access_token) {
+          this.storeToken(login); // , rememberMe);
         }
         return login;
       }
       ));
   }
 
-  storeToken(login: Login, rememberMe: boolean) {
+  storeToken(login: Login, rememberMe?: boolean) {
     this.account = login;
     if (this.account) {
       localStorage.setItem('authAccount', JSON.stringify(this.account));
@@ -51,7 +51,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('authAccount');
     sessionStorage.removeItem('authAccount');
-    sessionStorage.removeItem('userInfoData');
+    // sessionStorage.removeItem('userInfoData');
     const root = this.router.routerState.snapshot.root;
     this.authStatus.next(false);
     this.router.navigate(['/login']);
