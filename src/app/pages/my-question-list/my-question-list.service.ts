@@ -17,5 +17,9 @@ export class MyQuestionListService {
   getMyQuestionAnswers(id): Observable<any> {
     return this.http.get(`${environment.apiConfig.baseUrl}/api/Javab/${id}`);
   }
+
+  deleteQuestion(id): Observable<any> {
+    return this.http.delete(`${environment.apiConfig.baseUrl}/api/Soal/${id}`);
+  }
 }
 

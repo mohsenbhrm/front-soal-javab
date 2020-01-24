@@ -1,1 +1,92 @@
-<p>my-answer-list works!</p>
+<section class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h4>لیست جواب هایی که داده ام</h4>
+
+            <div class="scrollable-content">
+                <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" (panelChange)="getAnswerDetails($event)">
+                    <ngb-panel *ngFor="let item of answerList; let i=$implicit" id="{{i.idSoal}}-{{i.id}}">
+                        <ng-template ngbPanelHeader>
+                            <div class="row no-gutters">
+                                <div class="col-10">
+                                    <button ngbPanelToggle class="btn pr-2 d-flex flex-column justify-content-center align-items-start">
+                                        <div class="d-flex mb-2">
+                                            <small class="text-lite-dark">
+                                                <span>{{item.username}}</span>
+                                            </small>
+                                        </div>
+                                        <div class="">
+                                            {{item.matn}}
+                                        </div>
+                                    </button>
+                                </div>
+                                <div class="col-2">
+                                    <div class="d-flex justify-content-end align-items-center h-100">
+                                        <ul class="list-unstyled list-inline m-2">
+                                            <li class="list-inline-item">
+                                                <button class="btn">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14.039"
+                                                        height="13.967" viewBox="0 0 14.039 13.967">
+                                                        <path id="Path_427" data-name="Path 427"
+                                                            d="M817.938,444.257a.349.349,0,0,0-.349.35v3.1a1.05,1.05,0,0,1-1.049,1.048h-9.81a1.05,1.05,0,0,1-1.049-1.048V438.6a1.051,1.051,0,0,1,1.049-1.048h3.1a.35.35,0,1,0,0-.7h-3.1a1.75,1.75,0,0,0-1.749,1.748v9.112a1.749,1.749,0,0,0,1.749,1.748h9.81a1.749,1.749,0,0,0,1.749-1.748v-3.1a.35.35,0,0,0-.35-.35Zm0,0"
+                                                            transform="translate(-804.981 -435.491)" fill="#242c32" />
+                                                        <path id="Path_428" data-name="Path 428"
+                                                            d="M818.418,435.855a1.573,1.573,0,0,0-2.225,0l-6.238,6.238a.356.356,0,0,0-.09.154l-.82,2.961a.35.35,0,0,0,.43.43l2.961-.821a.358.358,0,0,0,.154-.09l6.237-6.238a1.575,1.575,0,0,0,0-2.225Zm-7.7,6.465,5.1-5.1,1.646,1.646-5.1,5.106Zm-.33.66L811.7,444.3l-1.82.5ZM818.334,438l-.371.371-1.647-1.647.372-.371a.873.873,0,0,1,1.236,0l.41.41a.876.876,0,0,1,0,1.237Zm0,0"
+                                                            transform="translate(-805.25 -435.395)" fill="#242c32" />
+                                                    </svg>
+                                                </button>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <button class="btn" (click)="deleteAnswer(item)">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="13.964"
+                                                        height="17.269" viewBox="0 0 13.964 17.269">
+                                                        <path id="Path_419" data-name="Path 419"
+                                                            d="M783.42,434.432h-2.688a2.337,2.337,0,0,0-4.643,0H773.4a1.975,1.975,0,0,0-1.973,1.973v.1a1.975,1.975,0,0,0,1.246,1.833v9.32a1.976,1.976,0,0,0,1.973,1.974h7.526a1.976,1.976,0,0,0,1.973-1.974v-9.32a1.975,1.975,0,0,0,1.246-1.833v-.1a1.975,1.975,0,0,0-1.973-1.973ZM778.41,433.3a1.4,1.4,0,0,1,1.376,1.133h-2.752a1.4,1.4,0,0,1,1.376-1.133Zm4.8,14.36a1.038,1.038,0,0,1-1.036,1.038h-7.526a1.039,1.039,0,0,1-1.037-1.038v-9.18h9.6Zm1.247-11.152a1.038,1.038,0,0,1-1.037,1.037H773.4a1.038,1.038,0,0,1-1.037-1.037v-.1a1.038,1.038,0,0,1,1.037-1.037H783.42a1.038,1.038,0,0,1,1.037,1.037Zm0,0"
+                                                            transform="translate(-771.428 -432.363)" fill="#242c32" />
+                                                        <path id="Path_420" data-name="Path 420"
+                                                            d="M776.187,448.135a.468.468,0,0,0,.468-.468V442.4a.468.468,0,0,0-.935,0v5.268a.469.469,0,0,0,.468.468Zm0,0"
+                                                            transform="translate(-771.713 -432.999)" fill="#242c32" />
+                                                        <path id="Path_421" data-name="Path 421"
+                                                            d="M778.874,448.135a.468.468,0,0,0,.468-.468V442.4a.468.468,0,0,0-.935,0v5.268a.468.468,0,0,0,.468.468Zm0,0"
+                                                            transform="translate(-771.892 -432.999)" fill="#242c32" />
+                                                        <path id="Path_422" data-name="Path 422"
+                                                            d="M781.561,448.135a.469.469,0,0,0,.468-.468V442.4a.468.468,0,1,0-.935,0v5.268a.468.468,0,0,0,.468.468Zm0,0"
+                                                            transform="translate(-772.07 -432.999)" fill="#242c32" />
+                                                    </svg>
+                                                </button>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div>
+                                <div *ngIf="question" class="card">
+                                    <div class="card-body p-2">
+                                        <div class="pr-2 d-flex flex-column justify-content-center align-items-start">
+                                            <div class="d-flex mb-2">
+                                                <small class="d-flex text-lite-dark">
+                                                    <span>{{question.username}} </span> -
+                                                    <span>{{question.reshteh}} </span> -
+                                                    <span>{{question.zirreshteh}} </span> -
+                                                    <span>{{question.regDate}} </span>
+                                                </small>
+                                            </div>
+                                            <div class="">
+                                                {{question.matn}}
+                                            </div>
+                                        </div>     
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+
+        </div>
+    </div>
+</section>

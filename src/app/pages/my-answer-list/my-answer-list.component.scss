@@ -1,0 +1,33 @@
+:host::ng-deep {
+    ngb-accordion {
+      .card {
+        border: 0 !important;
+        border-radius: 0 !important;
+        margin-bottom: 0.5rem;
+        box-shadow: 0 1px 3px 0 #cacaca;
+  
+        .card-header {
+          padding: 0px 10px;
+          button {
+            padding: 0;
+            width: 100%;
+  
+            &.btn {
+              color: var(--dark);
+              &:hover,
+              &:focus {
+                box-shadow: none;
+                color: var(--gray-dark);
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    .text-lite-dark {
+      color: #999;
+    }
+  }
+  

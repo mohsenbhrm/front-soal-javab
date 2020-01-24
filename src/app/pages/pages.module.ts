@@ -5,6 +5,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MyQuestionListComponent } from './my-question-list/my-question-list.component';
 import { MyAnswerListComponent } from './my-answer-list/my-answer-list.component';
+import { QuestionsFeedComponent } from './questions-feed/questions-feed.component';
 
 
 
@@ -13,7 +14,8 @@ import { MyAnswerListComponent } from './my-answer-list/my-answer-list.component
     QuestionComponent,
     DashboardComponent,
     MyQuestionListComponent,
-    MyAnswerListComponent
+    MyAnswerListComponent,
+    QuestionsFeedComponent
   ],
   imports: [
     SharedModule

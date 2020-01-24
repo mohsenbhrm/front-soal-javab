@@ -31,4 +31,16 @@ export class MyQuestionListComponent implements OnInit {
 
   }
 
+
+  deleteQuestion(item) {
+    console.log(item, '❤❤❤❤❤');
+    this.myQListService.deleteQuestion(item.soalId).subscribe(res => {
+      console.log(res);
+      this.myQListService.getMyQuestions().subscribe(list => {
+        this.questionList = list;
+      });
+
+    });
+  }
+
 }

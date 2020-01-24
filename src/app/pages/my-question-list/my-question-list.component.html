@@ -4,13 +4,13 @@
             <h4>لیست سوالاتی که پرسیده ام</h4>
 
             <div class="scrollable-content">
-                <ngb-accordion [closeOthers]="true" (panelChange)="getDetailsQuestion($event)">
+                <ngb-accordion #acc="ngbAccordion" [closeOthers]="true" (panelChange)="getDetailsQuestion($event)">
                     <ngb-panel *ngFor="let item of questionList; let i=$implicit" id="{{i.soalId}}">
-                        <ng-template ngbPanelTitle>
+                        <ng-template ngbPanelHeader>
                             <div class="row no-gutters">
                                 <div class="col-10">
-                                    <div class="pr-2 d-flex flex-column justify-content-center align-items-start">
-                                        <div class="d-flex">
+                                    <button ngbPanelToggle class="btn pr-2 d-flex flex-column justify-content-center align-items-start">
+                                        <div class="d-flex mb-2">
                                             <small class="text-lite-dark">
                                                 <span class="badge badge-primary">{{item.javabCount}}</span> -
                                                 <span>{{item.reshteh}}</span> -
@@ -18,10 +18,10 @@
                                                 <span>{{item.regDate}}</span>
                                             </small>
                                         </div>
-                                        <div class="my-2">
+                                        <div class="">
                                             {{item.matn}}
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                                 <div class="col-2">
                                     <div class="d-flex justify-content-end align-items-center h-100">
@@ -40,7 +40,7 @@
                                                 </button>
                                             </li>
                                             <li class="list-inline-item">
-                                                <button class="btn">
+                                                <button class="btn" (click)="deleteQuestion(item)">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="13.964"
                                                         height="17.269" viewBox="0 0 13.964 17.269">
                                                         <path id="Path_419" data-name="Path 419"
@@ -68,12 +68,14 @@
                         <ng-template ngbPanelContent>
                             <div *ngIf="answers">
                                 <div *ngFor="let item of answers" class="card">
-                                    <div class="card-body">
-                                        <span>{{item.}}</span>
+                                    <div class="card-body p-2">
+                                        <div class="d-flex flex-column">
+                                            <span>{{item.username}}</span>
+                                            <span>{{item.matn}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </ng-template>
                     </ngb-panel>
                 </ngb-accordion>
