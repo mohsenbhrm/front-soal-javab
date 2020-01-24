@@ -1,53 +1,43 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <button class="navbar-toggler" (click)="toggleSidebar()" type="button">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <a class="navbar-brand" href="#">سوال و جواب</a>
+  <app-menu class="ml-3"></app-menu>
 
-  <div class="collapse navbar-collapse">
+  <a class="navbar-brand ml-auto" [routerLink]="['/']" routerLinkActive="router-link-active">سوال و جواب</a>
 
-    <form class="form-inline mr-5 pr-5 my-2 my-lg-0">
-      <input class="form-control ml-sm-2" type="search" placeholder="{{ 'Search' | translate }}" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ 'Search' | translate }}</button>
-    </form>
+  <form class="form-inline mx-3">
+    <input class="form-control ml-sm-2" type="search" placeholder="{{ 'Search' | translate }}" aria-label="Search">
+    <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{ 'Search' | translate }}</button> -->
+  </form>
 
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item dropdown" ngbDropdown>
-        <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
+  <div class="d-flex justify-content-between">
+    <ul class="navbar-nav flex-row mx-3 mt-2">
+      <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-left">
+        <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown1" role="button">
           <i class="fa fa-language"></i> {{ 'Language' | translate }} <b class="caret"></b>
         </a>
-        <div class="dropdown-menu-right" ngbDropdownMenu>
-          <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('en')">
-            {{ 'English' | translate }}
-          </a>
-
-          <a class="dropdown-item" href="javascript:void(0)" (click)="changeLang('fa')">
-            {{ 'Farsi' | translate }}
-          </a>
-
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown1" class="dropdown-menu dropdown-menu-right">
+          <a ngbDropdownItem (click)="changeLang('en')">{{ 'English' | translate }}</a>
+          <a ngbDropdownItem (click)="changeLang('fa')">{{ 'Farsi' | translate }}</a>
         </div>
       </li>
-      <li class="nav-item dropdown" ngbDropdown>
-        <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-          <i class="fa fa-user"></i> John Smith <b class="caret"></b>
+
+      <li class="nav-item mr-3" ngbDropdown display="dynamic" placement="bottom-left">
+        <a class="nav-link" style="cursor: pointer" ngbDropdownToggle id="navbarDropdown2" role="button">
+          <i class="fa fa-user"></i>
+           <span *ngIf="userInfo"> {{userInfo.username}} </span>
+           <span *ngIf="!userInfo">&nbsp;کاربر &nbsp;</span>
+           <b class="caret"></b>
         </a>
-        <div class="dropdown-menu-right" ngbDropdownMenu>
-          <a class="dropdown-item" href="javascript:void(0)">
-            {{ 'Profile' | translate }}
-          </a>
-          <a class="dropdown-item" href="javascript:void(0)">
-            {{ 'Inbox' | translate }}
-          </a>
-          <a class="dropdown-item" href="javascript:void(0)">
-            <i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}
-          </a>
-          <a class="dropdown-item" [routerLink]="['/login']" (click)="onLoggedout()">
-            <i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}
-          </a>
+        <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
+          <a ngbDropdownItem href="#" (click)="$event.preventDefault()">{{ 'Profile' | translate }}</a>
+          <a ngbDropdownItem href="#" (click)="$event.preventDefault()"><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</a>
+          <a ngbDropdownItem href="#" (click)="onLoggedout()"><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</a>
         </div>
       </li>
     </ul>
 
   </div>
+  
+
+
 </nav>

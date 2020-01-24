@@ -1,42 +1,32 @@
-import { Component, OnInit, EventEmitter, Output, Input, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '@app/core/auth/auth.service';
+import { HeaderService } from './header.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit {
 
-  collapsed: boolean;
-
-  @Input() collapsedF: boolean;
-  @Output() collapsedEvent = new EventEmitter<boolean>();
+  userInfo;
 
   constructor(
     private translate: TranslateService,
     public router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private headerService: HeaderService
   ) {
 
   }
 
   ngOnInit() {
-
+    this.headerService.getUserInfo().subscribe(userInfo => {
+      this.userInfo = userInfo;
+    });
   }
-
-  ngOnChanges() {
-    this.collapsed = this.collapsedF;
-  }
-
-  toggleSidebar() {
-    this.collapsed = !this.collapsed;
-    this.collapsedEvent.emit(this.collapsed);
-
-  }
-
 
   onLoggedout() {
     this.authService.logout();

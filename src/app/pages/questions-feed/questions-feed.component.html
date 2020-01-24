@@ -1,1 +1,52 @@
-<p>questions-feed works!</p>
+<section class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h4>لیست سوالاتی که می توانم پاسخ دهم</h4>
+
+            <div class="scrollable-content">
+                <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+                    <ngb-panel *ngFor="let item of questionList; let i=$implicit" id="{{i.soalId}}">
+                        <ng-template ngbPanelHeader>
+                            <div class="row no-gutters">
+                                <div class="col-12">
+                                    <button ngbPanelToggle
+                                        class="btn pr-2 d-flex flex-column justify-content-center align-items-start">
+                                        <div class="d-flex mb-2">
+                                            <small class="text-lite-dark">
+                                                <span class="badge badge-primary">{{item.username}}</span> -
+                                                <span>{{item.regDate}}</span>
+                                            </small>
+                                        </div>
+                                        <div class="">
+                                            {{item.matn}}
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbPanelContent>
+                            <div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-2">
+                                                <button class="btn btn-primary">پاسخ</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </ngb-panel>
+                </ngb-accordion>
+            </div>
+
+        </div>
+    </div>
+</section>

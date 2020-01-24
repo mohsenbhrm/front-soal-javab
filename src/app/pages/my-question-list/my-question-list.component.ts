@@ -21,11 +21,9 @@ export class MyQuestionListComponent implements OnInit {
   }
 
   getDetailsQuestion($event) {
-    console.log($event);
     if ($event.nextState) {
       this.myQListService.getMyQuestionAnswers($event.panelId).subscribe(res => {
         this.answers = res;
-        console.log(res);
       });
     }
 
@@ -33,9 +31,7 @@ export class MyQuestionListComponent implements OnInit {
 
 
   deleteQuestion(item) {
-    console.log(item, '❤❤❤❤❤');
     this.myQListService.deleteQuestion(item.soalId).subscribe(res => {
-      console.log(res);
       this.myQListService.getMyQuestions().subscribe(list => {
         this.questionList = list;
       });

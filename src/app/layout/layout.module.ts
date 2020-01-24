@@ -3,10 +3,9 @@ import { NgModule } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from '@app/shared/shared.module';
-import { NavbarComponent } from './navbar/navbar.component';
 import { LayoutComponent } from './layout.component';
 import { RouterModule } from '@angular/router';
-import { QuestionComponent } from '@app/pages/question/question.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 // const routes: Routes = [
@@ -37,8 +36,8 @@ import { QuestionComponent } from '@app/pages/question/question.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
-    NavbarComponent,
     LayoutComponent,
+    MenuComponent,
   ],
   imports: [
     SharedModule,
