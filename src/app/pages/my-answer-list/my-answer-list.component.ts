@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MyAnswerListService } from './my-answer-list.service';
-import { NgbAccordion } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordion, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditAnswerModalComponent } from './edit-answer-modal/edit-answer-modal.component';
 
 @Component({
   selector: 'app-my-answer-list',
@@ -13,7 +14,8 @@ export class MyAnswerListComponent implements OnInit {
   answerList;
   question;
   constructor(
-    private answerListService: MyAnswerListService
+    private answerListService: MyAnswerListService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -36,8 +38,17 @@ export class MyAnswerListComponent implements OnInit {
       this.answerListService.getMyAnswersList().subscribe(list => {
         this.answerList = list;
       });
-
     });
+  }
+
+  editAnswer(item) {
+    const modalRef = this.modalService.open(EditAnswerModalComponent);
+    modalRef.componentInstance.item = item;
+
+    modalRef.result.then(
+      resolve => { },
+      reject => { }
+    );
   }
 
 }

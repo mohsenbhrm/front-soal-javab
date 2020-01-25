@@ -1,0 +1,67 @@
+<div class="modal-header">
+    <h4 class="modal-title">ویرایش سوال</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <!-- <span>{{item | json}}</span> -->
+    <form [formGroup]="editQuestionForm">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">رشته</label>
+              <input disabled class="form-control" value="{{item.reshteh}}">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">زیر رشته</label>
+              <input class="form-control" disabled value="{{item.zirreshteh}}">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+              <textarea formControlName="questionBody" class="form-control" placeholder="متن سوال" rows="6"></textarea>
+              <span *ngIf="editQuestionForm.get('questionBody').hasError('required') &&
+              editQuestionForm.get('questionBody').value === null &&
+              editQuestionForm.get('questionBody').touched" class="text-danger">
+                <small>متن سوال الزامی است</small>
+              </span>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+              <tag-input  formControlName="tags" (onAdd)="checkIfAvalable($event)" theme='bootstrap' [onlyFromAutocomplete]="false"
+              [placeholder]="'تگ بعدی'" [secondaryPlaceholder]="'تگ را وارد کنید'"
+              [separatorKeyCodes]="[32]" [allowDupes]="false">
+                <tag-input-dropdown [keepOpen]="false" [autocompleteObservable]='requestAutocompleteItems' [showDropdownIfEmpty]="true">
+                  <ng-template let-item="item" let-index="index">
+                    {{ item.display }}
+                  </ng-template>
+                </tag-input-dropdown>
+              </tag-input>
+              <span *ngIf="editQuestionForm.get('tags').hasError('required') &&
+              editQuestionForm.get('tags').value === null &&
+              editQuestionForm.get('tags').touched" class="text-danger">
+                <small>تگ الزامی است</small>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- <button class="btn btn-primary" type="submit" (click)="editQuestion()">
+          <div *ngIf="disabled" class="spinner-border text-light" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+          <span *ngIf="!disabled">ویرایش سوال</span>
+        </button> -->
+      </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="activeModal.close('Close click')">ویرایش</button>
+    <button type="button" NgbAutoFocus class="btn btn-danger" (click)="activeModal.dismiss()">لغو</button>
+
+</div>

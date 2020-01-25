@@ -22,27 +22,12 @@ export class QuestionComponent implements OnInit {
   registerQuestion: FormGroup;
   fields: any[];
   activeSubFields: any[];
-  items: TagModel[] = [
-    {
-      display: 'item 0',
-      value: 0
-    },
-    {
-      display: 'item 1',
-      value: 1
-    },
-    {
-      display: 'item 2',
-      value: 2
-    }
-  ];
 
   disabled = false;
 
   constructor(
     private fb: FormBuilder,
     private questionService: QuestionService,
-    private http: HttpClient,
     private toastrService: ToastrService
   ) { }
 

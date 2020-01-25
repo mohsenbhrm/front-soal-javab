@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MyQuestionListService } from './my-question-list.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditQuestionModalComponent } from './edit-question-modal/edit-question-modal.component';
 
 @Component({
   selector: 'app-my-question-list',
@@ -11,7 +13,8 @@ export class MyQuestionListComponent implements OnInit {
   questionList: any;
   answers: any;
   constructor(
-    private myQListService: MyQuestionListService
+    private myQListService: MyQuestionListService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit() {
@@ -35,8 +38,17 @@ export class MyQuestionListComponent implements OnInit {
       this.myQListService.getMyQuestions().subscribe(list => {
         this.questionList = list;
       });
-
     });
+  }
+
+  editQuestion(item) {
+    const modalRef = this.modalService.open(EditQuestionModalComponent);
+    modalRef.componentInstance.item = item;
+
+    modalRef.result.then(
+      resolve => { },
+      reject => { }
+    );
   }
 
 }

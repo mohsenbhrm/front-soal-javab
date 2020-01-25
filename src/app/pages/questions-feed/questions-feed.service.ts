@@ -24,4 +24,8 @@ export class QuestionsFeedService {
   getNewFeeds(): Observable<any> {
     return this.http.get(`${environment.apiConfig.baseUrl}/api/SoalToUser/getNewFeeds`);
   }
+
+  tryAnswer(id, body): Observable<any> {
+    return this.http.post(`${environment.apiConfig.baseUrl}/api/Javab`, {IdSoal: id, Matn: body});
+  }
 }

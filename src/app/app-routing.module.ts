@@ -7,6 +7,8 @@ import { QuestionComponent } from './pages/question/question.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MyQuestionListComponent } from './pages/my-question-list/my-question-list.component';
 import { MyAnswerListComponent } from './pages/my-answer-list/my-answer-list.component';
+import { QuestionsFeedComponent } from './pages/questions-feed/questions-feed.component';
+import { SignUpComponent } from './login/sign-up/sign-up.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,10 @@ const routes: Routes = [
     path: 'login',
     // loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
     component: LoginComponent
+  },
+  {
+    path: 'sign-up',
+    component: SignUpComponent
   },
   {
     path: 'home',
@@ -47,6 +53,10 @@ const routes: Routes = [
       {
         path: 'my-answers',
         component: MyAnswerListComponent,
+      },
+      {
+        path: 'question-feed',
+        component: QuestionsFeedComponent,
       }
     ]
   },

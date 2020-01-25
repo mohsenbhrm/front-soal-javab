@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title">ویرایش جواب</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <!-- <span>{{item | json}}</span> -->
+
+    <div class="form-group">
+        <input class="form-control" value="{{item.matn}}">
+      </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="activeModal.close('Close click')">ویرایش</button>
+    <button type="button" NgbAutoFocus class="btn btn-danger" (click)="activeModal.dismiss()">لغو</button>
+
+</div>

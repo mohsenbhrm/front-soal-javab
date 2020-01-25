@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgbDropdownModule, NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbAccordionModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -16,6 +16,7 @@ import { TagInputModule } from 'ngx-chips';
     BrowserAnimationsModule,
     ToastrModule.forRoot({positionClass: 'toast-bottom-left'}),
     NgbDropdownModule,
+    NgbModalModule,
     NgbAccordionModule,
     TagInputModule,
     TranslateModule
@@ -25,6 +26,7 @@ import { TagInputModule } from 'ngx-chips';
     BrowserAnimationsModule,
     ToastrModule,
     NgbDropdownModule,
+    NgbModalModule,
     NgbAccordionModule,
     TagInputModule,
     TranslateModule
