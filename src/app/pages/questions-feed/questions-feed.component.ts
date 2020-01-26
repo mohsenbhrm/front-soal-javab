@@ -11,7 +11,7 @@ export class QuestionsFeedComponent implements OnInit, OnDestroy {
 
   questionList: any[];
   answer: string;
-
+  hasZirreshteh = false;
   loadMoreLoading = false;
   answerLoading = false;
   private timerHandleId;
@@ -21,20 +21,26 @@ export class QuestionsFeedComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.questionFeedService.getInitFeeds().subscribe(res => {
-      this.questionList = res;
-    });
-
-    this.timerHandleId = setInterval(() => {
-      this.questionFeedService.getNewFeeds().subscribe((newFeed: any[]) => {
-        if (newFeed) {
-          newFeed.forEach(el => {
-            this.questionList.unshift(el);
+    this.questionFeedService.getUserInfoSubject().subscribe(info => {
+      if (info && info.zirReshteh.length > 0) {
+        this.hasZirreshteh = true;
+        this.questionFeedService.getInitFeeds().subscribe(res => {
+          this.questionList = res;
+        });
+        this.timerHandleId = setInterval(() => {
+          this.questionFeedService.getNewFeeds().subscribe((newFeed: any[]) => {
+            if (newFeed) {
+              newFeed.forEach(el => {
+                this.questionList.unshift(el);
+              });
+              this.questionList = [...this.questionList];
+            }
           });
-          this.questionList = [...this.questionList];
-        }
-      });
-    }, 60000);
+        }, 60000);
+      } else {
+        this.hasZirreshteh = false;
+      }
+    });
   }
 
   loadMore() {

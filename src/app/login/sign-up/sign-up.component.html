@@ -1,7 +1,7 @@
 <div class="container h-100">
-    <div class="row h-100">
+    <div class="row vh-100">
       <div class="col-md-5">
-        <div class="d-flex flex-column justify-content-center align-items-center h-100">
+        <div class="py-5 d-flex flex-column justify-content-center align-items-center h-100">
           <form [formGroup]="signUpForm" class="w-100">
             <div class="form-group">
               <input type="text" formControlName="userName" class="form-control text-right" placeholder="نام کاربری">
@@ -9,36 +9,75 @@
                 <small>نام کاربری الزامی است</small>
               </span>
             </div>
-  
+
             <div class="form-group">
               <input type="password" formControlName="passWord" class="form-control text-right" placeholder="رمز ورود">
-              <span *ngIf="signUpForm.get('passWord').hasError('required') && signUpForm.get('userName').touched" class="text-danger">
+              <span *ngIf="signUpForm.get('passWord').hasError('required')  && signUpForm.get('passWord').touched" class="text-danger">
                 <small>رمز عبور الزامی است</small>
               </span>
+              <span *ngIf="signUpForm.get('passWord').hasError('minlength')" class="text-danger">
+                <small>رمز ورود حدافل باید 6 کاراکتر یا بیشتر باشد</small>
+              </span>
             </div>
+
+            <div class="form-group">
+              <input type="password" formControlName="repeatPassWord" class="form-control text-right" placeholder="تکرار رمز ورود">
+              <span *ngIf="signUpForm.get('repeatPassWord').hasError('required') && signUpForm.get('repeatPassWord').touched" class="text-danger">
+                <small>تکرار رمز عبور الزامی است</small>
+              </span>
+              <span *ngIf="signUpForm.get('repeatPassWord').hasError('mustMatch')" class="text-danger">
+                <small>رمز عبور تطابق ندارد</small>
+              </span>
+            </div>
+
+            <div class="form-group">
+              <input type="text" formControlName="name" class="form-control text-right" placeholder="نام">
+              <span *ngIf="signUpForm.get('name').hasError('required') && signUpForm.get('name').touched" class="text-danger">
+                <small>نام الزامی است</small>
+              </span>
+            </div>
+
+            <div class="form-group">
+              <input type="text" formControlName="family" class="form-control text-right" placeholder="نام خانوادگی">
+              <span *ngIf="signUpForm.get('family').hasError('required') && signUpForm.get('family').touched" class="text-danger">
+                <small>نام خانوادگی الزامی است</small>
+              </span>
+            </div>
+
+            <div class="form-group">
+              <input type="email" formControlName="email" class="form-control text-right" placeholder="ایمیل">
+              <span *ngIf="signUpForm.get('email').hasError('required') && signUpForm.get('email').touched" class="text-danger">
+                <small>ایمیل الزامی است</small>
+              </span>
+
+              <span *ngIf="signUpForm.get('email').hasError('email')" class="text-danger">
+                <small>قالب ایمیل را رعایت کنید</small>
+              </span>
+            </div>
+
+
             <button [disabled]="signUpButtonDisabled" class="btn btn-primary text-light w-100" type="submit" (click)="onSignedUp()">
               <div *ngIf="signUpButtonDisabled" class="spinner-border text-light" role="status">
                 <span class="sr-only">Loading...</span>
               </div>
               <span *ngIf="!signUpButtonDisabled">ثبت نام</span>
-  
+
             </button>
-  
+
           </form>
 
           <a class="my-4" [routerLink]="['/login']" routerLinkActive="router-link-active">ورود</a>
         </div>
-  
+
       </div>
       <div class="col-md-7">
         <div class="d-flex flex-column justify-content-center align-items-center h-100">
           <img src="assets/images/question.png" width="150px" class="user-avatar" />
           <h4 class="my-3">
-            وبسایت سوال و جواب
+          سوال و جواب
           </h4>
         </div>
-  
+
       </div>
     </div>
   </div>
-  

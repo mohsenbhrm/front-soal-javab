@@ -5,6 +5,7 @@ import { Router, ActivatedRouteSnapshot } from '@angular/router';
 import { ApiConfig } from '@app/core/common/models/api-config.model';
 import { map } from 'rxjs/operators';
 import { Login } from './models/login.model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable(
@@ -34,6 +35,18 @@ export class AuthService {
         return login;
       }
       ));
+  }
+
+  signUp(body): Observable<any> {
+    return this.httpClient.post(`${environment.apiConfig.baseUrl}/api/Account/SignUp`, body).pipe(map(
+      (login: any) => {
+        if (login.access_token) {
+          this.storeToken(login); // , rememberMe);
+          this.router.navigate(['/home']);
+        }
+      }
+    ));
+
   }
 
   storeToken(login: Login, rememberMe?: boolean) {

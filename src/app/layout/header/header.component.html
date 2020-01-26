@@ -29,7 +29,7 @@
            <b class="caret"></b>
         </a>
         <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu dropdown-menu-right">
-          <a ngbDropdownItem href="#" (click)="$event.preventDefault()">{{ 'Profile' | translate }}</a>
+          <a ngbDropdownItem href="#" (click)="$event.preventDefault()"><i class="fa fa-user"></i> {{ 'Profile' | translate }}</a>
           <a ngbDropdownItem href="#" (click)="$event.preventDefault()"><i class="fa fa-fw fa-gear"></i> {{ 'Settings' | translate }}</a>
           <a ngbDropdownItem href="#" (click)="onLoggedout()"><i class="fa fa-fw fa-power-off"></i> {{ 'Log Out' | translate }}</a>
         </div>
@@ -37,7 +37,7 @@
     </ul>
 
   </div>
-  
+
 
 
 </nav>

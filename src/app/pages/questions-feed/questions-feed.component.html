@@ -1,67 +1,70 @@
 <section class="container-fluid">
-    <div class="card">
-        <div class="card-body">
-            <h4>لیست سوالاتی که می توانم پاسخ دهم</h4>
-
-            <div *ngIf="questionList && questionList.length > 0" class="scrollable-content">
-                <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
-                    <ngb-panel *ngFor="let item of questionList; let i=$implicit" id="{{i.soalId}}">
-                        <ng-template ngbPanelHeader>
-                            <div class="row no-gutters">
-                                <div class="col-12">
-                                    <button ngbPanelToggle
-                                        class="btn pr-2 d-flex flex-column justify-content-center align-items-start">
-                                        <div class="d-flex mb-2">
-                                            <small class="text-lite-dark">
-                                                <span class="badge badge-primary">{{item.username}}</span> -
-                                                <span>{{item.regDate}}</span>
-                                            </small>
-                                        </div>
-                                        <div class="">
-                                            {{item.matn}}
-                                        </div>
-                                    </button>
-                                </div>
-                            </div>
-                        </ng-template>
-                        <ng-template ngbPanelContent>
-                            <div>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-10">
-                                                <div class="form-group mb-0">
-                                                    <input type="text" [(ngModel)]="answer" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-2">
-                                                <button class="btn btn-primary" [disabled]="!answer"
-                                                    (click)="sendAnswer(item)">
-                                                    <span *ngIf="answerLoading === false">پاسخ</span>
-                                                    <div *ngIf="answerLoading === true" class="spinner-border"
-                                                        role="status">
-                                                        <span class="sr-only">Loading...</span>
-                                                    </div>
-                                                </button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </ng-template>
-                    </ngb-panel>
-                </ngb-accordion>
-                <div class="d-flex justify-content-center align-items-center">
-                    <a *ngIf="questionList.length > 0" href="javascript:void(0)" class="m-3" (click)="loadMore()">
-                        <span *ngIf="loadMoreLoading === false">سوالات بیشتر</span>
-                        <div *ngIf="loadMoreLoading === true" class="spinner-border" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
-                    </a>
+  <div class="card">
+    <div class="card-body">
+      <h4>لیست سوالاتی که می توانم پاسخ دهم</h4>
+      <div *ngIf="hasZirreshteh">
+        <div *ngIf="questionList && questionList.length > 0" class="scrollable-content">
+          <ngb-accordion #acc="ngbAccordion" [closeOthers]="true">
+            <ngb-panel *ngFor="let item of questionList; let i=$implicit" id="{{i.soalId}}">
+              <ng-template ngbPanelHeader>
+                <div class="row no-gutters">
+                  <div class="col-12">
+                    <button ngbPanelToggle class="btn pr-2 d-flex flex-column justify-content-center align-items-start">
+                      <div class="d-flex mb-2">
+                        <small class="text-lite-dark">
+                          <span class="badge badge-primary">{{item.username}}</span> -
+                          <span>{{item.regDate}}</span>
+                        </small>
+                      </div>
+                      <div class="">
+                        {{item.matn}}
+                      </div>
+                    </button>
+                  </div>
                 </div>
-            </div>
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <div>
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-10">
+                          <div class="form-group mb-0">
+                            <input type="text" [(ngModel)]="answer" class="form-control">
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <button class="btn btn-primary" [disabled]="!answer" (click)="sendAnswer(item)">
+                            <span *ngIf="answerLoading === false">پاسخ</span>
+                            <div *ngIf="answerLoading === true" class="spinner-border" role="status">
+                              <span class="sr-only">Loading...</span>
+                            </div>
+                          </button>
+                        </div>
 
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </ngb-panel>
+          </ngb-accordion>
+          <div class="d-flex justify-content-center align-items-center">
+            <a *ngIf="questionList.length > 0" href="javascript:void(0)" class="m-3" (click)="loadMore()">
+              <span *ngIf="loadMoreLoading === false">سوالات بیشتر</span>
+              <div *ngIf="loadMoreLoading === true" class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            </a>
+          </div>
         </div>
+      </div>
+      <div *ngIf="!hasZirreshteh" class="d-flex justify-content-center align-items-center">
+        <h5 class="text-danger">
+          لطفا در قسمت پروفایل تخصص های خود را انتخاب کنید
+        </h5>
+      </div>
+
     </div>
+  </div>
 </section>
